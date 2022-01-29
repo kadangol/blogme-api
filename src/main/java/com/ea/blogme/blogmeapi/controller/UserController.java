@@ -1,11 +1,12 @@
 package com.ea.blogme.blogmeapi.controller;
 
+import com.ea.blogme.blogmeapi.dto.user.UserSave;
+import com.ea.blogme.blogmeapi.dto.user.UserUpdate;
 import com.ea.blogme.blogmeapi.service.IUserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/user")
@@ -24,5 +25,20 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id){
         return userService.getById(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> save(@Valid @RequestBody UserSave userSave){
+        return userService.save(userSave);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> update(@Valid @RequestBody UserUpdate userUpdate){
+        return userService.update(userUpdate);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        return userService.delete(id);
     }
 }
