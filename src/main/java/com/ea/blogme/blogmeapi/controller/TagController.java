@@ -1,8 +1,8 @@
 package com.ea.blogme.blogmeapi.controller;
 
-import com.ea.blogme.blogmeapi.dto.tag.BlogResponse;
 import com.ea.blogme.blogmeapi.dto.tag.TagDelete;
 import com.ea.blogme.blogmeapi.dto.tag.TagSave;
+import com.ea.blogme.blogmeapi.service.IPostTagService;
 import com.ea.blogme.blogmeapi.service.ITagService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/tag")
 public class TagController {
     private final ITagService tagService;
+    private final IPostTagService postTagService;
 
-    public TagController(ITagService tagService){
+    public TagController(ITagService tagService, IPostTagService postTagService){
         this.tagService = tagService;
+        this.postTagService = postTagService;
     }
 
     @PostMapping
@@ -23,13 +25,13 @@ public class TagController {
     }
 
     @GetMapping("/title/blogs")
-    public ResponseEntity<BlogResponse> findAllBlogByTagTitle(@RequestParam String title){
-        return ResponseEntity.ok(tagService.findAllBlogIdByTagTitle(title));
+    public ResponseEntity<?> findAllBlogByTagTitle(@RequestParam String title){
+        return postTagService.findAllBlogByTagTitle(title);
     }
 
     @GetMapping("/id/blogs")
-    public ResponseEntity<BlogResponse> findAllBlogByTagId(@RequestParam Long tagId){
-        return ResponseEntity.ok(tagService.findAllBlogIdByTagId(tagId));
+    public ResponseEntity<?> findAllBlogByTagId(@RequestParam Long tagId){
+        return postTagService.findAllBlogByTagId(tagId);
     }
 
     @DeleteMapping

@@ -32,7 +32,7 @@ public class UserProxyService implements IUserService {
     }
 
     @Override
-    public ResponseEntity<?> getById(Long id) {
+    public ResponseEntity<User> getById(Long id) {
         try {
             return restTemplate.getForEntity(userWithIdUrl, User.class, id);
         }

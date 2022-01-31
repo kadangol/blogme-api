@@ -18,4 +18,8 @@ public interface IPostService {
     ResponseEntity<?> delete(Long id);
 
     ResponseEntity<?> findAllByIdIn(BlogResponseDto responseDto);
+
+    ResponseEntity<?> getPostByAuthorId( Long id);
+
+    ResponseEntity<?> deleteAllByAuthorId(Long id);
 }
