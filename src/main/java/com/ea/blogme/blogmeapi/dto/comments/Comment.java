@@ -13,6 +13,7 @@ import java.util.Set;
 public class Comment {
     private Long id;
     private Long blogId;
+    private Long userId;
     private String commentText;
     private Date createdDate;
     private Date modifiedDate;
