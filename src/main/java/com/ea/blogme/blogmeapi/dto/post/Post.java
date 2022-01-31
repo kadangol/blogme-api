@@ -25,4 +25,6 @@ public class Post {
     private String status;
     private List<Category> categoryList;
 
+    private List<String> tags;
+
 }

@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PostDto {
+    private Long authorId;
     @NotBlank
     private String title;
     @NotBlank
