@@ -12,4 +12,5 @@ public class CommentInputDto {
     private Long blogId;
     private String commentText;
     private Long parentId;
+    private Long userId;
 }
