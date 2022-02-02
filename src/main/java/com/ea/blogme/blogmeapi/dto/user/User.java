@@ -1,5 +1,6 @@
 package com.ea.blogme.blogmeapi.dto.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ public class User {
     private Names names;
     private String mobile;
     private String email;
+    @JsonIgnore
     private String password;
     private Date registeredAt;
     private String intro;

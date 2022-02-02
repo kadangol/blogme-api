@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -150,6 +151,14 @@ public class ExceptionHandlingControllerAdvice extends ResponseEntityExceptionHa
 
     @ExceptionHandler({CustomException.class})
     public ResponseEntity<ApiError> handleCustomException(final Exception ex) {
+        logger.error(ex.getClass().getName());
+        logger.error(ex.getMessage());
+        final ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex.getMessage());
+        return new ResponseEntity<>(apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
+    @ExceptionHandler({ConnectException.class})
+    public ResponseEntity<ApiError> handleConnectionLost(final Exception ex) {
         logger.error(ex.getClass().getName());
         logger.error(ex.getMessage());
         final ApiError apiError = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex.getMessage());
